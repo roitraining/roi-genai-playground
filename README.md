@@ -7,8 +7,8 @@ using various models.
 
 ### Create a virtual Environment
 ```
-python3 -m venv genai-demo-env
-source genai-demo-env/bin/activate
+python3 -m venv ~/genai-demo-env
+source ~/genai-demo-env/bin/activate
 ```
 
 ### Install the requirements
@@ -24,9 +24,9 @@ In the project you are using you need an OpenAI API Key. Create this in Secret M
 You need an environment variables with your Project ID adn Regions
 
 ```
-export GOOGLE_CLOUD_PROJECT='your-project-id'
+export GOOGLE_CLOUD_PROJECT='roidtc-genai-playground'
 export GOOGLE_CLOUD_REGION='us-central1'
-export RESTRICTED=TRUE (or FALSE)
+export RESTRICTED=FALSE
 ```
 
 ### Start the Program
