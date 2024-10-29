@@ -27,13 +27,13 @@ for f in md_files:
         md_dict[key] = file.read()
 
 chat_models = {
-    'Gemini 1.5 Flash': 'gemini-1.5-flash',
     'GPT-4o': 'gpt-4o',
+    'Gemini 1.5 Flash': 'gemini-1.5-flash',
 }
 
 text_models = {
-    'Gemini 1.5 Flash': 'gemini-1.5-flash',
     'GPT-4o': 'gpt-4o',
+    'Gemini 1.5 Flash': 'gemini-1.5-flash',
 }
 
 image_models = {
@@ -43,7 +43,9 @@ image_models = {
 if restricted == 'FALSE':
     chat_models['Claude 3.5 Sonnet'] = "claude-3-5-sonnet-v2@20241022"
     text_models['Claude 3.5 Sonnet'] = "claude-3-5-sonnet-v2@20241022"
-    image_models['Imagen 2'] = "imagegeneration@006"
+    # Uncomment below to add older version of Imagen
+    # image_models['Imagen 2'] = "imagegeneration@006"
+    image_models['Imagen 3 Fast'] = "imagen-3.0-fast-generate-001"
     image_models['SD3 Large Turbo'] = "sd3-large-turbo"
 
 
@@ -75,9 +77,9 @@ codey_models = [
     'Codey'
 ]
 
-
 google_image_models = [
-    "Imagen 2"
+    "Imagen 2",
+    "Imagen 3 Fast",
 ]
 
 openai_image_models = [

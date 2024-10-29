@@ -5,9 +5,9 @@ import streamlit as st
 def generate_image(prompt, empty, model_name="", parent=None):
     response = None
     error = None
-
+    
     try:
-        model = ImageGenerationModel.from_pretrained("imagegeneration@006")
+        model = ImageGenerationModel.from_pretrained(model_name)
         with empty:
             with st.spinner("Generating Image..."):
                 response = model.generate_images(
