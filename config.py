@@ -28,12 +28,12 @@ for f in md_files:
 
 chat_models = {
     'GPT-4o': 'gpt-4o',
-    'Gemini 1.5 Flash': 'gemini-1.5-flash',
+    'Gemini 2.0 Flash': 'gemini-2.0-flash',
 }
 
 text_models = {
     'GPT-4o': 'gpt-4o',
-    'Gemini 1.5 Flash': 'gemini-1.5-flash',
+    'Gemini 2.0 Flash': 'gemini-2.0-flash',
 }
 
 image_models = {
@@ -50,6 +50,7 @@ if restricted == 'FALSE':
 
 
 gemini_models = [
+    'Gemini 2.0 Flash',
     'Gemini 1.5 Pro',
     'Gemini 1.5 Flash',
     'Gemini 1.0 Pro'

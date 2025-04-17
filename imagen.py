@@ -15,7 +15,7 @@ def generate_image(prompt, empty, model_name="", parent=None):
                     number_of_images=1,
                     guidance_scale=21,
                     safety_filter_level="block_few",
-                    person_generation="allow_adult",
+                    #person_generation="allow_adult",
                     aspect_ratio="1:1",
                 )
         if response is None:

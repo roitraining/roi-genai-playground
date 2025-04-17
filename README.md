@@ -42,5 +42,5 @@ gcloud artifacts repositories create roi-genai-app-docker-repo --repository-form
 ```
 
 ```
-gcloud builds submit --region=us-central1 --tag us-central1-docker.pkg.dev/roidtc-genai-playground/roi-genai-app-docker-repo/roi-genai-app-image:v1.0
+gcloud builds submit --region=us-central1 --tag us-central1-docker.pkg.dev/roidtc-genai-playground/roi-genai-app-docker-repo/roi-genai-app-image:v1.1
 ```
