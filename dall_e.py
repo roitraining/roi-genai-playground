@@ -1,9 +1,11 @@
-from config import secrets
 from openai import OpenAI
-from config import secrets, image_models
+from config import image_models
 import streamlit as st
 import base64
 import re
+
+from config import load_secrets
+secrets = load_secrets()
 
 def generate_image(prompt, empty, model_name="", parent=None):
     response = None

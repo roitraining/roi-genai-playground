@@ -1,4 +1,11 @@
 import streamlit as st
+
+st.set_page_config(
+    page_title='ROI GenAI Playground',
+    page_icon='./static/ROISquareLogo.png',
+)
+
+
 import gemini
 import non_gemini
 import open_ai
@@ -8,14 +15,17 @@ from config import (
     gemini_models,
     non_gemini_google_models,
     openai_models,
-    md_dict,
     claude_models
 )
 
-st.set_page_config(
-    page_title='ROI GenAI Playground',
-    page_icon='./static/ROISquareLogo.png',
-)
+from config import load_secrets
+secrets = load_secrets()
+
+from config import load_markdown_files
+md_dict = load_markdown_files()
+
+
+
 
 st.markdown(md_dict['styles'], unsafe_allow_html=True)
 

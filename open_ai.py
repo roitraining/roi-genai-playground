@@ -1,5 +1,8 @@
 import streamlit as st
-from config import secrets, chat_models
+from config import chat_models
+
+from config import load_secrets
+secrets = load_secrets()
 
 import openai
 openai.api_key=secrets['openai_api_key']

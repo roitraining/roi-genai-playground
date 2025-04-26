@@ -1,24 +1,25 @@
 import streamlit as st
-import openai
-import open_ai, gemini, non_gemini, claude
-
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from streamlit.runtime.scriptrunner import add_script_run_ctx
-from config import (
-    secrets, 
-    text_models,
-    gemini_models,
-    non_gemini_google_models,
-    openai_models,
-    claude_models,
-    md_dict
-)
 
 st.set_page_config(
     page_title='ROI GenAI Playground',
     page_icon='./static/ROISquareLogo.png',
     layout="wide"
 )
+
+import openai
+import open_ai, gemini, non_gemini, claude
+
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from streamlit.runtime.scriptrunner import add_script_run_ctx
+from config import (
+    text_models,
+    gemini_models,
+    non_gemini_google_models,
+    openai_models,
+    claude_models,
+)
+
+
 
 google_header_style = """
     background-color: #4285f4;
@@ -51,6 +52,12 @@ claude_header_style = """
     border-radius: 5px;
     margin-bottom: 10px;
 """
+
+from config import load_secrets
+secrets = load_secrets()
+
+from config import load_markdown_files
+md_dict = load_markdown_files()
 
 st.markdown(md_dict['styles'], unsafe_allow_html=True)
 

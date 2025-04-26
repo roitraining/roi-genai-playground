@@ -1,5 +1,5 @@
 import streamlit as st
-from config import secrets, chat_models, project_id, region
+from config import chat_models, project_id, region
 from anthropic import AnthropicVertex
 
 # turns out that Claude models aren't all available in central

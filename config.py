@@ -1,30 +1,64 @@
 import os
+import streamlit as st
 from google.cloud import secretmanager
 
 project_id = os.environ['GOOGLE_CLOUD_PROJECT']
 region = os.getenv('GOOGLE_CLOUD_REGION', 'us-central1')
 restricted = os.getenv('RESTRICTED', 'FALSE').upper()
 
+@st.cache_resource
+def load_secrets():
+    """
+    Lazily loads secrets from Google Secret Manager.
+    Cached for the app session.
+    """
+    project_id = os.environ['GOOGLE_CLOUD_PROJECT']
+    client = secretmanager.SecretManagerServiceClient()
+    parent = f"projects/{project_id}"
 
-# collect secrets from Secret Manager
-secrets = {}
-client = secretmanager.SecretManagerServiceClient()
-parent = f"projects/{project_id}"
-for secret in client.list_secrets(request={"parent": parent}):
-    secret_name = client.parse_secret_path(secret.name)["secret"]
-    version_path = f"{secret.name}/versions/latest"
-    response = client.access_secret_version(request={"name": version_path})
-    secrets[secret_name] = response.payload.data.decode("UTF-8")
+    secrets = {}
+    for secret in client.list_secrets(request={"parent": parent}):
+        secret_name = client.parse_secret_path(secret.name)["secret"]
+        version_path = f"{secret.name}/versions/latest"
+        response = client.access_secret_version(request={"name": version_path})
+        secrets[secret_name] = response.payload.data.decode("UTF-8")
+    return secrets
 
-# collect markdown files
-dir_path = "./"
-files = os.listdir(dir_path)
-md_files = [f for f in files if f.endswith('.md')]
-md_dict = {}
-for f in md_files:
-    key = os.path.splitext(f)[0]
-    with open(os.path.join(dir_path, f), 'r') as file:
-        md_dict[key] = file.read()
+@st.cache_resource
+def load_markdown_files():
+    """
+    Lazily loads all markdown files from disk.
+    Cached for the app session.
+    """
+    dir_path = "./"
+    files = os.listdir(dir_path)
+    md_dict = {}
+    for f in files:
+        if f.endswith('.md'):
+            key = os.path.splitext(f)[0]
+            with open(os.path.join(dir_path, f), 'r') as file:
+                md_dict[key] = file.read()
+    return md_dict
+
+# # collect secrets from Secret Manager
+# secrets = {}
+# client = secretmanager.SecretManagerServiceClient()
+# parent = f"projects/{project_id}"
+# for secret in client.list_secrets(request={"parent": parent}):
+#     secret_name = client.parse_secret_path(secret.name)["secret"]
+#     version_path = f"{secret.name}/versions/latest"
+#     response = client.access_secret_version(request={"name": version_path})
+#     secrets[secret_name] = response.payload.data.decode("UTF-8")
+
+# # collect markdown files
+# dir_path = "./"
+# files = os.listdir(dir_path)
+# md_files = [f for f in files if f.endswith('.md')]
+# md_dict = {}
+# for f in md_files:
+#     key = os.path.splitext(f)[0]
+#     with open(os.path.join(dir_path, f), 'r') as file:
+#         md_dict[key] = file.read()
 
 chat_models = {
     'GPT-4o': 'gpt-4o',

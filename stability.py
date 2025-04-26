@@ -1,7 +1,9 @@
-from config import image_models, secrets
+from config import image_models
 import streamlit as st
 import requests
 
+from config import load_secrets
+secrets = load_secrets()
 
 def generate_image(prompt, empty, model_name="sd3-large-turbo", parent=None):
     sd3_endpoint = "https://api.stability.ai/v2beta/stable-image/generate/sd3"

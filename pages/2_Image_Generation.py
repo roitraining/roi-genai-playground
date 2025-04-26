@@ -1,4 +1,11 @@
 import streamlit as st
+
+st.set_page_config(
+    page_title='ROI GenAI Playground',
+    page_icon='./static/ROISquareLogo.png',
+    layout="wide"
+)
+
 import time
 import imagen, dall_e, stability
 from config import (
@@ -6,16 +13,12 @@ from config import (
     google_image_models, 
     openai_image_models,
     stability_image_models,
-    md_dict
 )
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from streamlit.runtime.scriptrunner import add_script_run_ctx
 
-st.set_page_config(
-    page_title='ROI GenAI Playground',
-    page_icon='./static/ROISquareLogo.png',
-    layout="wide"
-)
+from config import load_markdown_files
+md_dict = load_markdown_files()
 
 st.markdown(md_dict['styles'], unsafe_allow_html=True)
 
