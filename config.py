@@ -62,12 +62,12 @@ def load_markdown_files():
 
 chat_models = {
     'GPT-4o': 'gpt-4o',
-    'Gemini 2.0 Flash': 'gemini-2.0-flash',
+    'Gemini 2.5 Flash': 'gemini-2.5-flash',
 }
 
 text_models = {
     'GPT-4o': 'gpt-4o',
-    'Gemini 2.0 Flash': 'gemini-2.0-flash',
+    'Gemini 2.5 Flash': 'gemini-2.5-flash',
 }
 
 image_models = {
@@ -84,6 +84,7 @@ if restricted == 'FALSE':
 
 
 gemini_models = [
+    'Gemini 2.5 Flash',
     'Gemini 2.0 Flash',
     'Gemini 1.5 Pro',
     'Gemini 1.5 Flash',

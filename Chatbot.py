@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title='ROI GenAI Playground',
-    page_icon='./static/ROISquareLogo.png',
+    #page_icon='./static/ROISquareLogo.png',
 )
 
 
@@ -23,8 +23,6 @@ secrets = load_secrets()
 
 from config import load_markdown_files
 md_dict = load_markdown_files()
-
-
 
 
 st.markdown(md_dict['styles'], unsafe_allow_html=True)
@@ -67,8 +65,8 @@ def show_intro():
     Displays the introduction section of the GenAI Playground application.
     """
     st.image(
-        "https://storage.googleapis.com/files.roitraining.com/images/logo.png",
-        width=300
+        "static/roilogo.png",
+        width=200
     )
     st.title("Generative AI Playground - Chat")
     st.divider()

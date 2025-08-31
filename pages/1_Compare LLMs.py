@@ -97,8 +97,8 @@ def show_intro():
     Displays the introduction section of the ROI Training GenAI Chat page.
     """
     st.image(
-        "https://storage.googleapis.com/files.roitraining.com/images/logo.png",
-        width=300
+        "static/roilogo.png",
+        width=200
     )
     st.title("Generative AI Playground - Compare LLMs")
     st.divider()
