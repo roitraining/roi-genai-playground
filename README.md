@@ -11,6 +11,7 @@ python3 -m venv ~/genai-demo-env
 source ~/genai-demo-env/bin/activate
 ```
 
+
 ### Install the requirements
 ```
 pip install -r requirements.txt 
