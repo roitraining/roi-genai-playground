@@ -1,11 +1,14 @@
 import streamlit as st
 from config import chat_models
-
 from config import load_secrets
-secrets = load_secrets()
 
-import openai
-openai.api_key=secrets['openai_api_key']
+
+@st.cache_resource
+def get_openai_client():
+    import openai
+    secrets = load_secrets()
+    openai.api_key = secrets["openai_api_key"]
+    return openai
 
 def get_response(prompt, 
                  response_container, 
@@ -13,6 +16,8 @@ def get_response(prompt,
                  model_name="",
                  parent=None
                  ):
+    
+    openai = get_openai_client()
     
     messages = []
 
