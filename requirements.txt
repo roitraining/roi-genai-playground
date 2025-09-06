@@ -3,5 +3,4 @@ streamlit-extras
 openai
 google-cloud-aiplatform
 google-cloud-secret-manager
-google-cloud-firestore
 anthropic[vertex]

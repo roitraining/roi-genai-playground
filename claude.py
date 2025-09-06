@@ -2,9 +2,15 @@ import streamlit as st
 from config import chat_models, project_id, region
 from anthropic import AnthropicVertex
 
-# turns out that Claude models aren't all available in central
-region = "us-east5"
-client = AnthropicVertex(region=region, project_id=project_id)
+# # turns out that Claude models aren't all available in central
+# region = "us-east5"
+# client = AnthropicVertex(region=region, project_id=project_id)
+
+@st.cache_resource
+def get_claude_client():
+    # Claude on Vertex is region-specific
+    from anthropic import AnthropicVertex
+    return AnthropicVertex(region="us-east5", project_id=project_id)
 
 class ClaudeError(Exception):
     def __init__(self, message):
@@ -15,6 +21,9 @@ def get_response(prompt,
                  chat=True,
                  model_name="",
                  parent=None):
+    
+    client = get_claude_client()
+
     messages = []
     prompt_message = {
         "role": "user",

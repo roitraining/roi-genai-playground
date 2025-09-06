@@ -40,25 +40,7 @@ def load_markdown_files():
                 md_dict[key] = file.read()
     return md_dict
 
-# # collect secrets from Secret Manager
-# secrets = {}
-# client = secretmanager.SecretManagerServiceClient()
-# parent = f"projects/{project_id}"
-# for secret in client.list_secrets(request={"parent": parent}):
-#     secret_name = client.parse_secret_path(secret.name)["secret"]
-#     version_path = f"{secret.name}/versions/latest"
-#     response = client.access_secret_version(request={"name": version_path})
-#     secrets[secret_name] = response.payload.data.decode("UTF-8")
 
-# # collect markdown files
-# dir_path = "./"
-# files = os.listdir(dir_path)
-# md_files = [f for f in files if f.endswith('.md')]
-# md_dict = {}
-# for f in md_files:
-#     key = os.path.splitext(f)[0]
-#     with open(os.path.join(dir_path, f), 'r') as file:
-#         md_dict[key] = file.read()
 
 chat_models = {
     'GPT-4o': 'gpt-4o',
