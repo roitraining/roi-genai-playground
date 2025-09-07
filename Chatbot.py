@@ -4,7 +4,6 @@ import streamlit as st
 from config import (
     chat_models,
     gemini_models,
-    non_gemini_google_models,
     openai_models,
     claude_models,
 )
@@ -25,7 +24,6 @@ st.markdown(md_dict.get("styles", ""), unsafe_allow_html=True)
 # ---- Lazy backend resolver ----
 MODULE_MAP = {
     "gemini": "gemini",
-    "google_legacy": "non_gemini",
     "openai": "open_ai",
     "claude": "claude",
 }
@@ -37,8 +35,6 @@ def _get_backend_module(model_name: str):
     """
     if model_name in gemini_models:
         return importlib.import_module(MODULE_MAP["gemini"])
-    if model_name in non_gemini_google_models:
-        return importlib.import_module(MODULE_MAP["google_legacy"])
     if model_name in openai_models:
         return importlib.import_module(MODULE_MAP["openai"])
     if model_name in claude_models:

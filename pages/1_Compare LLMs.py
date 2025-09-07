@@ -7,19 +7,16 @@ st.set_page_config(
 )
 
 import openai
-import open_ai, gemini, non_gemini, claude
+import open_ai, gemini, claude
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from streamlit.runtime.scriptrunner import add_script_run_ctx
 from config import (
     text_models,
     gemini_models,
-    non_gemini_google_models,
     openai_models,
     claude_models,
 )
-
-
 
 google_header_style = """
     background-color: #4285f4;
@@ -113,7 +110,7 @@ containers = []
 empties = []
 for i, model in enumerate(text_models):
     header_style = ""
-    if model in gemini_models or model in non_gemini_google_models:
+    if model in gemini_models:
         container = cols[0].container(border=True)
         header_style = google_header_style
     if model in openai_models:
@@ -151,15 +148,6 @@ if prompt:
                     prompt, 
                     empties[i],
                     chat=False,
-                    model_name=text_models[model],
-                    parent=containers[i]
-                )
-                futures.append(future)
-            if model in non_gemini_google_models:
-                future = executor.submit(
-                    non_gemini.get_text_response,
-                    prompt,
-                    empties[i],
                     model_name=text_models[model],
                     parent=containers[i]
                 )

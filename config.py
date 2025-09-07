@@ -40,8 +40,6 @@ def load_markdown_files():
                 md_dict[key] = file.read()
     return md_dict
 
-
-
 chat_models = {
     'GPT-4o': 'gpt-4o',
     'Gemini 2.5 Flash': 'gemini-2.5-flash',
@@ -59,44 +57,23 @@ image_models = {
 if restricted == 'FALSE':
     chat_models['Claude 3.5 Sonnet'] = "claude-3-5-sonnet-v2@20241022"
     text_models['Claude 3.5 Sonnet'] = "claude-3-5-sonnet-v2@20241022"
-    # Uncomment below to add older version of Imagen
-    # image_models['Imagen 2'] = "imagegeneration@006"
     image_models['Imagen 3 Fast'] = "imagen-3.0-fast-generate-001"
     image_models['SD3 Large Turbo'] = "sd3-large-turbo"
 
 
 gemini_models = [
     'Gemini 2.5 Flash',
-    'Gemini 2.0 Flash',
-    'Gemini 1.5 Pro',
-    'Gemini 1.5 Flash',
-    'Gemini 1.0 Pro'
-]
-
-non_gemini_google_models = [
-    'PaLMv2',
-    'Codey',
 ]
 
 openai_models = [
-    'GPT-4 Turbo',
-    'GPT-3.5 Turbo',
     'GPT-4o',
-    'GPT-4o mini'
 ]
 
 claude_models = [
-    'Claude 3 Opus',
     'Claude 3.5 Sonnet',
-    'Claude 3 Haiku'
-]
-
-codey_models = [
-    'Codey'
 ]
 
 google_image_models = [
-    "Imagen 2",
     "Imagen 3 Fast",
 ]
 
